@@ -1,0 +1,20 @@
+
+                Thu Jul 09 14:19:53 2015
+[2015/07/09@14:19:53.075-0300] P-7612       T-732   I DBUTIL   : (451)   Sessão prostrct create iniciada por Sanderlei em CON:. 
+[2015/07/09@14:19:53.078-0300] P-7612       T-732   I DBUTIL   : (12862) Arquivo de estrutura  D:\2015-00-DEV\Study\Study-Progress\01 - Progress DCA\Base\Sports.st usado para criar banco de dados com tamanho de bloco  4096. 
+[2015/07/09@14:19:53.087-0300] P-7612       T-732   I DBUTIL   : (334)   Fim de sessão prostrct create. 
+[2015/07/09@14:19:53.092-0300] P-7612       T-732   I DBUTIL   : (451)   Sessão procopy iniciada por Sanderlei em CON:. 
+[2015/07/09@14:19:53.340-0300] P-7612       T-732   I DBUTIL   : (334)   Fim de sessão procopy. 
+
+                Thu Jul 09 14:19:53 2015
+[2015/07/09@14:19:53.348-0300] P-7612       T-732   I          : (451)   Sessão procopy get default SQL DBA iniciada por Sanderlei em CON:. 
+[2015/07/09@14:19:53.350-0300] P-7612       T-732   I          : (15321) Inicialização do log Before Image no bloco 0  offset 34194576. 
+[2015/07/09@14:19:53.833-0300] P-7612       T-732   I          : (14867) Procopy -newinstance criou uma nova GUID de banco de dados. 
+[2015/07/09@14:19:53.870-0300] P-7612       T-732   I          : (15109) No fechamento do banco de dados o número de transações ao vivo é 0. 
+[2015/07/09@14:19:53.871-0300] P-7612       T-732   I          : (15743) Before Image Log Completion at Block 0 Offset 3642. 
+[2015/07/09@14:19:53.889-0300] P-7612       T-732   I          : (334)   Fim de sessão procopy get default SQL DBA. 
+
+                Thu Jul 09 14:19:55 2015
+[2015/07/09@14:19:55.362-0300] P-7664       T-5556  I ABL      : (451)   Sessão Single-user iniciada por Sanderlei em CON:. 
+[2015/07/09@14:19:55.362-0300] P-7664       T-5556  I ABL      : (15321) Inicialização do log Before Image no bloco 0  offset 3642. 
+[2015/07/09@14:19:55.365-0300] P-7664       T-5556  I ABL      : (12699) Banco de dados Sports Opções:  
