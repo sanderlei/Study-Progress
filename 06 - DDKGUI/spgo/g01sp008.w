@@ -29,7 +29,7 @@ define output parameter     p-row-tabela    as rowid    no-undo.
 /* Local Variable Definitions ---                                       */
 
 /* _UIB-CODE-BLOCK-END */
-&ANALYZE-RESUME
+&ANALYZE-RESUME 
 
 
 &ANALYZE-SUSPEND _UIB-PREPROCESSOR-BLOCK 
