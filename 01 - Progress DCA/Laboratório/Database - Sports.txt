@@ -1,0 +1,1010 @@
+14/07/15 14:07:31       PROGRESS Report
+Database: Sports (PROGRESS)
+
+
+Table Name     Description
+----------------------------------------------------------------------------
+Customer       Customer information
+Invoice        This contains transactions for the Receivables system
+Item           Item file
+Local-Default
+Order          Order header information
+Order-Line     Order line information
+Ref-Call
+Salesrep       Sales representative information
+State          Table of state abbreviation with sales regions
+        
+        
+=========================================================================
+============================= Table: Customer ===========================
+        
+              Table Flags: "f" = frozen, "s" = a SQL table
+        
+        
+Table                            Table Field Index Table
+Name                             Flags Count Count Label
+-------------------------------- ----- ----- ----- ------------------------
+Customer                                  16     5 ?
+        
+    Dump Name: customer
+  Description: Customer information
+ Storage Area: Customer/Order Area
+        
+       Trigger Event Trigger Procedure    Overridable? Check CRC?
+       ------------- -------------------- ------------ ----------
+       CREATE        sports/crcust.p      no           no
+       DELETE        sports/delcust.p     no           no
+       WRITE         sports/wrcust.p      no           no
+        
+        
+============================= FIELD SUMMARY =============================
+============================= Table: Customer ===========================
+        
+Flags: <c>ase sensitive, <i>ndex component, <m>andatory, <v>iew component
+        
+Order Field Name                       Data Type   Flags
+----- -------------------------------- ----------- -----
+   10 Cust-Num                         inte        i
+   15 Country                          char        i
+   30 Name                             char        i
+   40 Address                          char
+   50 Address2                         char
+   60 City                             char
+   70 State                            char
+   80 Postal-Code                      char        i
+  110 Contact                          char
+  115 Phone                            char
+  125 Sales-Rep                        char        i
+  130 Credit-Limit                     deci-2
+  140 Balance                          deci-2
+  150 Terms                            char
+  170 Discount                         inte
+  180 Comments                         char        i
+        
+Field Name                       Format
+-------------------------------- -----------------------------
+Cust-Num                         >>>>9
+Country                          x(20)
+Name                             x(20)
+Address                          x(20)
+Address2                         x(20)
+City                             x(12)
+State                            x(20)
+Postal-Code                      x(10)
+Contact                          x(20)
+Phone                            x(20)
+Sales-Rep                        X(4)
+Credit-Limit                     ->,>>>,>>9
+Balance                          ->,>>>,>>9.99
+Terms                            x(20)
+Discount                         >>9%
+Comments                         x(60)
+        
+Field Name                       Initial
+-------------------------------- -----------------------------
+Cust-Num                         0
+Country                          USA
+Name
+Address
+Address2
+City
+State
+Postal-Code
+Contact
+Phone
+Sales-Rep
+Credit-Limit                     1500
+Balance                          0
+Terms                            Net30
+Discount                         0
+Comments
+        
+Field Name                     Label                  Column Label
+------------------------------ ---------------------- ----------------------
+Cust-Num                       ?                      ?
+Country                        ?                      ?
+Name                           ?                      ?
+Address                        ?                      ?
+Address2                       ?                      ?
+City                           ?                      ?
+State                          ?                      ?
+Postal-Code                    ?                      ?
+Contact                        ?                      ?
+Phone                          ?                      ?
+Sales-Rep                      ?                      ?
+Credit-Limit                   ?                      ?
+Balance                        ?                      ?
+Terms                          ?                      ?
+Discount                       ?                      ?
+Comments                       ?                      ?
+        
+        
+============================= INDEX SUMMARY =============================
+============================= Table: Customer ===========================
+        
+Flags: <p>rimary, <u>nique, <w>ord, <a>bbreviated, <i>nactive, + asc, - desc
+        
+Flags Index Name                       Cnt Field Name
+----- -------------------------------- --- ---------------------------------
+w     Comments                           1 + Comments
+        
+      Country-Post                       2 + Country
+                                           + Postal-Code
+        
+pu    Cust-Num                           1 + Cust-Num
+        
+      Name                               1 + Name
+        
+      Sales-Rep                          1 + Sales-Rep
+        
+** Index Name: Comments
+ Storage Area: Customer Index Area
+** Index Name: Country-Post
+ Storage Area: Customer Index Area
+** Index Name: Cust-Num
+ Storage Area: Primary Index Area
+** Index Name: Name
+ Storage Area: Customer Index Area
+** Index Name: Sales-Rep
+ Storage Area: Customer/Order Area
+        
+        
+============================= FIELD DETAILS =============================
+============================= Table: Customer ===========================
+        
+** Field Name: Cust-Num
+      Val-Msg: Customer number must be greater than zero
+      Val-Exp: cust-num > 0
+        
+** Field Name: State
+  Description: Label/Valexp/Valmsg/Help are set based on value of NON-US
+               field!
+         Help: Enter standard state abbreviation
+        
+       Trigger Event Trigger Procedure    Overridable? Check CRC?
+       ------------- -------------------- ------------ ----------
+       ASSIGN        sports/asstate.p     no           no
+        
+** Field Name: Postal-Code
+  Description: Format/Label/Help Message based on status of NON-US field.
+         Help: Please enter the appropriate Postal Code.
+        
+** Field Name: Phone
+  Description: Format/Label/Help based on status of NON-US field.
+        
+** Field Name: Sales-Rep
+      Val-Msg: The Sales Rep's name you've entered must exist in the
+               Salesrep table.
+      Val-Exp: CAN-FIND(Salesrep OF Customer)
+        
+** Field Name: Credit-Limit
+  Description: Maximum credit
+         Help: Please enter a Credit Limit
+      Val-Msg: Credit Limit must be >= 0 and <= 9,999,999
+      Val-Exp: Credit-Limit >= 0 AND Credit-Limit <= 9999999
+        
+** Field Name: Discount
+         Help: Enter a percentage from 0 to 999
+      Val-Msg: Discount must be greater or equal to 0
+      Val-Exp: Discount >= 0
+        
+        
+        
+=========================================================================
+============================= Table: Invoice ============================
+        
+              Table Flags: "f" = frozen, "s" = a SQL table
+        
+        
+Table                            Table Field Index Table
+Name                             Flags Count Count Label
+-------------------------------- ----- ----- ----- ------------------------
+Invoice                                    8     4 ?
+        
+    Dump Name: invoice
+  Description: This contains transactions for the Receivables system
+ Storage Area: Info Area
+        
+       Trigger Event Trigger Procedure    Overridable? Check CRC?
+       ------------- -------------------- ------------ ----------
+       CREATE        sports/crinv.p       no           no
+       DELETE        sports/delinv.p      no           no
+        
+        
+============================= FIELD SUMMARY =============================
+============================= Table: Invoice ============================
+        
+Flags: <c>ase sensitive, <i>ndex component, <m>andatory, <v>iew component
+        
+Order Field Name                       Data Type   Flags
+----- -------------------------------- ----------- -----
+   10 Invoice-Num                      inte        i
+   20 Cust-Num                         inte        i
+   30 Invoice-Date                     date        i
+   40 Amount                           deci-2
+   50 Total-Paid                       deci-2
+   60 Adjustment                       deci-2
+   80 Order-Num                        inte        i
+  120 Ship-Charge                      deci-2
+        
+Field Name                       Format
+-------------------------------- -----------------------------
+Invoice-Num                      >>>>>9
+Cust-Num                         >>>>9
+Invoice-Date                     99/99/99
+Amount                           ->>,>>9.99
+Total-Paid                       ->>,>>9.99
+Adjustment                       ->>,>>9.99
+Order-Num                        >>>>9
+Ship-Charge                      ->>,>>9.99
+        
+Field Name                       Initial
+-------------------------------- -----------------------------
+Invoice-Num                      0
+Cust-Num                         0
+Invoice-Date                     ?
+Amount                           0
+Total-Paid                       0
+Adjustment                       0
+Order-Num                        0
+Ship-Charge                      0
+        
+Field Name                     Label                  Column Label
+------------------------------ ---------------------- ----------------------
+Invoice-Num                    ?                      ?
+Cust-Num                       ?                      ?
+Invoice-Date                   ?                      ?
+Amount                         ?                      ?
+Total-Paid                     ?                      ?
+Adjustment                     ?                      ?
+Order-Num                      ?                      ?
+Ship-Charge                    ?                      ?
+        
+        
+============================= INDEX SUMMARY =============================
+============================= Table: Invoice ============================
+        
+Flags: <p>rimary, <u>nique, <w>ord, <a>bbreviated, <i>nactive, + asc, - desc
+        
+Flags Index Name                       Cnt Field Name
+----- -------------------------------- --- ---------------------------------
+      Cust-Num                           1 + Cust-Num
+        
+      Invoice-Date                       1 + Invoice-Date
+        
+pu    Invoice-Num                        1 + Invoice-Num
+        
+      Order-Num                          1 + Order-Num
+        
+** Index Name: Cust-Num
+ Storage Area: Info Area
+** Index Name: Invoice-Date
+ Storage Area: Info Area
+** Index Name: Invoice-Num
+ Storage Area: Info Area
+** Index Name: Order-Num
+ Storage Area: Info Area
+        
+        
+============================= FIELD DETAILS =============================
+============================= Table: Invoice ============================
+        
+** Field Name: Invoice-Num
+      Val-Msg: Invoice number cannot be zero
+      Val-Exp: invoice-num > 0
+        
+** Field Name: Cust-Num
+      Val-Msg: The Customer number entered must be a valid one.
+      Val-Exp: CAN-FIND(customer OF invoice)
+        
+** Field Name: Amount
+         Help: Enter total invoice amount including shipping and sales tax
+        
+** Field Name: Order-Num
+      Val-Msg: The Order number entered must be a valid one.
+        
+        
+        
+=========================================================================
+============================= Table: Item ===============================
+        
+              Table Flags: "f" = frozen, "s" = a SQL table
+        
+        
+Table                            Table Field Index Table
+Name                             Flags Count Count Label
+-------------------------------- ----- ----- ----- ------------------------
+Item                                       9     3 ?
+        
+    Dump Name: item
+  Description: Item file
+      Val-Exp: NOT (CAN-FIND(FIRST order-line OF item))
+      Val-Msg: Cannot delete Item, order-line records exist with this item
+ Storage Area: Info Area
+        
+       Trigger Event Trigger Procedure    Overridable? Check CRC?
+       ------------- -------------------- ------------ ----------
+       CREATE        sports/critem.p      no           no
+       WRITE         sports/writem.p      no           no
+        
+        
+============================= FIELD SUMMARY =============================
+============================= Table: Item ===============================
+        
+Flags: <c>ase sensitive, <i>ndex component, <m>andatory, <v>iew component
+        
+Order Field Name                       Data Type   Flags
+----- -------------------------------- ----------- -----
+   10 Item-num                         inte        i
+   20 Item-Name                        char        i
+   22 Price                            deci-2
+   50 On-hand                          inte
+   60 Allocated                        inte
+   80 Re-Order                         inte
+   90 On-Order                         inte
+  100 Cat-Page                         inte
+  110 Cat-Description                  char        i
+        
+Field Name                       Format
+-------------------------------- -----------------------------
+Item-num                         99999
+Item-Name                        x(15)
+Price                            ->,>>>,>>9.99
+On-hand                          ->>>>9
+Allocated                        ->>>>9
+Re-Order                         ->>>>9
+On-Order                         ->>>>9
+Cat-Page                         >>9
+Cat-Description                  x(200)
+        
+Field Name                       Initial
+-------------------------------- -----------------------------
+Item-num                         0
+Item-Name
+Price                            0
+On-hand                          0
+Allocated                        0
+Re-Order                         0
+On-Order                         0
+Cat-Page                         0
+Cat-Description
+        
+Field Name                     Label                  Column Label
+------------------------------ ---------------------- ----------------------
+Item-num                       ?                      ?
+Item-Name                      ?                      ?
+Price                          ?                      ?
+On-hand                        ?                      ?
+Allocated                      ?                      ?
+Re-Order                       ?                      ?
+On-Order                       ?                      ?
+Cat-Page                       ?                      ?
+Cat-Description                Cat-Description        ?
+        
+        
+============================= INDEX SUMMARY =============================
+============================= Table: Item ===============================
+        
+Flags: <p>rimary, <u>nique, <w>ord, <a>bbreviated, <i>nactive, + asc, - desc
+        
+Flags Index Name                       Cnt Field Name
+----- -------------------------------- --- ---------------------------------
+w     Cat-Description                    1 + Cat-Description
+        
+w     Item-Name                          1 + Item-Name
+        
+pu    Item-Num                           1 + Item-num
+        
+** Index Name: Cat-Description
+ Storage Area: Info Area
+** Index Name: Item-Name
+ Storage Area: Info Area
+** Index Name: Item-Num
+ Storage Area: Info Area
+        
+        
+============================= FIELD DETAILS =============================
+============================= Table: Item ===============================
+        
+** Field Name: Item-num
+         Help: Enter a number between 1 and 99999
+      Val-Msg: Item number must be greater or equal to 0
+      Val-Exp: item-num >= 0
+        
+        
+        
+=========================================================================
+============================= Table: Local-Default ======================
+        
+              Table Flags: "f" = frozen, "s" = a SQL table
+        
+        
+Table                            Table Field Index Table
+Name                             Flags Count Count Label
+-------------------------------- ----- ----- ----- ------------------------
+Local-Default                              8     1 ?
+        
+    Dump Name: country
+      Val-Exp: NOT (CAN-FIND(FIRST Customer WHERE Customer.Country = 
+        
+               Local-Default.Country))
+      Val-Msg: This record cannot be deleted if used in at least one
+               Customer record.
+ Storage Area: Info Area
+        
+        
+============================= FIELD SUMMARY =============================
+============================= Table: Local-Default ======================
+        
+Flags: <c>ase sensitive, <i>ndex component, <m>andatory, <v>iew component
+        
+Order Field Name                       Data Type   Flags
+----- -------------------------------- ----------- -----
+   10 Country                          char
+   20 Region1-Label                    char
+   30 Region2-Label                    char
+   40 Postal-Label                     char
+   50 Postal-Format                    char
+   60 Tel-Format                       char
+   70 Currency-Symbol                  char
+   80 Date-Format                      char
+        
+Field Name                       Format
+-------------------------------- -----------------------------
+Country                          x(20)
+Region1-Label                    x(12)
+Region2-Label                    x(15)
+Postal-Label                     x(15)
+Postal-Format                    x(15)
+Tel-Format                       x(15)
+Currency-Symbol                  x(6)
+Date-Format                      x(8)
+        
+Field Name                       Initial
+-------------------------------- -----------------------------
+Country
+Region1-Label
+Region2-Label
+Postal-Label
+Postal-Format
+Tel-Format
+Currency-Symbol
+Date-Format                      MDY
+        
+Field Name                     Label                  Column Label
+------------------------------ ---------------------- ----------------------
+Country                        ?                      ?
+Region1-Label                  ?                      ?
+Region2-Label                  ?                      ?
+Postal-Label                   ?                      ?
+Postal-Format                  ?                      ?
+Tel-Format                     ?                      ?
+Currency-Symbol                ?                      ?
+Date-Format                    ?                      ?
+        
+        
+============================= INDEX SUMMARY =============================
+============================= Table: Local-Default ======================
+        
+Flags: <p>rimary, <u>nique, <w>ord, <a>bbreviated, <i>nactive, + asc, - desc
+        
+Flags Index Name                       Cnt Field Name
+----- -------------------------------- --- ---------------------------------
+p     default                            0 +
+        
+** Index Name: default
+ Storage Area: Schema Area
+        
+        
+============================= FIELD DETAILS =============================
+============================= Table: Local-Default ======================
+        
+        
+        
+=========================================================================
+============================= Table: Order ==============================
+        
+              Table Flags: "f" = frozen, "s" = a SQL table
+        
+        
+Table                            Table Field Index Table
+Name                             Flags Count Count Label
+-------------------------------- ----- ----- ----- ------------------------
+Order                                     10     4 ?
+        
+    Dump Name: order
+  Description: Order header information
+      Val-Exp: 1 = 1
+ Storage Area: Customer/Order Area
+        
+       Trigger Event Trigger Procedure    Overridable? Check CRC?
+       ------------- -------------------- ------------ ----------
+       CREATE        sports/crord.p       no           no
+        
+        
+============================= FIELD SUMMARY =============================
+============================= Table: Order ==============================
+        
+Flags: <c>ase sensitive, <i>ndex component, <m>andatory, <v>iew component
+        
+Order Field Name                       Data Type   Flags
+----- -------------------------------- ----------- -----
+   10 Order-num                        inte        i
+   20 Cust-Num                         inte        i
+   90 Order-Date                       date        i
+  100 Ship-Date                        date
+  110 Promise-Date                     date
+  120 Carrier                          char
+  130 Instructions                     char
+  140 PO                               char
+  150 Terms                            char
+  160 Sales-Rep                        char        i
+        
+Field Name                       Format
+-------------------------------- -----------------------------
+Order-num                        >>>>9
+Cust-Num                         >>>>9
+Order-Date                       99/99/99
+Ship-Date                        99/99/99
+Promise-Date                     99/99/99
+Carrier                          x(20)
+Instructions                     x(20)
+PO                               x(20)
+Terms                            x(20)
+Sales-Rep                        x(4)
+        
+Field Name                       Initial
+-------------------------------- -----------------------------
+Order-num                        0
+Cust-Num                         0
+Order-Date                       TODAY
+Ship-Date                        ?
+Promise-Date                     ?
+Carrier
+Instructions
+PO
+Terms                            Net30
+Sales-Rep
+        
+Field Name                     Label                  Column Label
+------------------------------ ---------------------- ----------------------
+Order-num                      ?                      ?
+Cust-Num                       ?                      ?
+Order-Date                     Ordered                ?
+Ship-Date                      Shipped                ?
+Promise-Date                   Promised               ?
+Carrier                        ?                      ?
+Instructions                   ?                      ?
+PO                             ?                      ?
+Terms                          ?                      ?
+Sales-Rep                      ?                      ?
+        
+        
+============================= INDEX SUMMARY =============================
+============================= Table: Order ==============================
+        
+Flags: <p>rimary, <u>nique, <w>ord, <a>bbreviated, <i>nactive, + asc, - desc
+        
+Flags Index Name                       Cnt Field Name
+----- -------------------------------- --- ---------------------------------
+u     Cust-Order                         2 + Cust-Num
+                                           + Order-num
+        
+      Order-Date                         1 + Order-Date
+        
+pu    Order-Num                          1 + Order-num
+        
+      Sales-Rep                          1 + Sales-Rep
+        
+** Index Name: Cust-Order
+ Storage Area: Customer/Order Area
+** Index Name: Order-Date
+ Storage Area: Order Index Area
+** Index Name: Order-Num
+ Storage Area: Primary Index Area
+** Index Name: Sales-Rep
+ Storage Area: Order Index Area
+        
+        
+============================= FIELD DETAILS =============================
+============================= Table: Order ==============================
+        
+** Field Name: Order-num
+         Help: Enter an order number between 1 and 99999
+      Val-Msg: Order number must be greater than zero
+      Val-Exp: order-num > 0
+        
+** Field Name: Cust-Num
+  Description:
+               Help:Name
+         Help: Enter an existing customer number
+      Val-Msg: Customer must already exist
+      Val-Exp: CAN-FIND(customer OF order)
+        
+** Field Name: Order-Date
+         Help: Date of order
+        
+** Field Name: Carrier
+  Description: Should lookup valid carriers.
+        
+** Field Name: Terms
+  Description: This should default to the TERMS specified by the CUSTOMER
+               record.
+        
+        
+        
+=========================================================================
+============================= Table: Order-Line =========================
+        
+              Table Flags: "f" = frozen, "s" = a SQL table
+        
+        
+Table                            Table Field Index Table
+Name                             Flags Count Count Label
+-------------------------------- ----- ----- ----- ------------------------
+Order-Line                                 8     2 ?
+        
+    Dump Name: order-li
+  Description: Order line information
+ Storage Area: Customer/Order Area
+        
+       Trigger Event Trigger Procedure    Overridable? Check CRC?
+       ------------- -------------------- ------------ ----------
+       CREATE        sports/crordl.p      no           no
+       DELETE        sports/delordl.p     no           no
+       WRITE         sports/wrordl.p      no           no
+        
+        
+============================= FIELD SUMMARY =============================
+============================= Table: Order-Line =========================
+        
+Flags: <c>ase sensitive, <i>ndex component, <m>andatory, <v>iew component
+        
+Order Field Name                       Data Type   Flags
+----- -------------------------------- ----------- -----
+   10 Order-num                        inte        i
+   20 Line-num                         inte        i
+   30 Item-num                         inte        i
+   40 Price                            deci-2
+   50 Qty                              inte
+   70 Discount                         inte
+   80 Extended-Price                   deci-2
+   90 Backorder                        logi
+        
+Field Name                       Format
+-------------------------------- -----------------------------
+Order-num                        >>>>9
+Line-num                         >>9
+Item-num                         99999
+Price                            ->,>>>,>>9.99
+Qty                              ->>>>9
+Discount                         >>9%
+Extended-Price                   ->>,>>9.99
+Backorder                        yes/no
+        
+Field Name                       Initial
+-------------------------------- -----------------------------
+Order-num                        0
+Line-num                         0
+Item-num                         0
+Price                            0
+Qty                              0
+Discount                         0
+Extended-Price                   0
+Backorder                        no
+        
+Field Name                     Label                  Column Label
+------------------------------ ---------------------- ----------------------
+Order-num                      ?                      ?
+Line-num                       ?                      ?
+Item-num                       ?                      ?
+Price                          ?                      ?
+Qty                            ?                      ?
+Discount                       ?                      ?
+Extended-Price                 ?                      ?
+Backorder                      Back Order             ?
+        
+        
+============================= INDEX SUMMARY =============================
+============================= Table: Order-Line =========================
+        
+Flags: <p>rimary, <u>nique, <w>ord, <a>bbreviated, <i>nactive, + asc, - desc
+        
+Flags Index Name                       Cnt Field Name
+----- -------------------------------- --- ---------------------------------
+      item-num                           1 + Item-num
+        
+pu    order-line                         2 + Order-num
+                                           + Line-num
+        
+** Index Name: item-num
+ Storage Area: Order Index Area
+** Index Name: order-line
+ Storage Area: Primary Index Area
+        
+        
+============================= FIELD DETAILS =============================
+============================= Table: Order-Line =========================
+        
+** Field Name: Order-num
+         Help: Order number for this order line
+      Val-Msg: Order must exist
+      Val-Exp: CAN-FIND(order OF order-line)
+        
+** Field Name: Line-num
+  Description: To be generated automatically by key value generator!
+        
+** Field Name: Item-num
+  Description:
+               Help:Idesc
+         Help: Item number
+      Val-Msg: Item must be on file
+      Val-Exp: CAN-FIND(item OF order-line)
+        
+** Field Name: Price
+  Description: This field should get its default from the ITEM file's
+               price field.
+        
+** Field Name: Backorder
+  Description: Whether this order item is on back order
+        
+        
+        
+=========================================================================
+============================= Table: Ref-Call ===========================
+        
+              Table Flags: "f" = frozen, "s" = a SQL table
+        
+        
+Table                            Table Field Index Table
+Name                             Flags Count Count Label
+-------------------------------- ----- ----- ----- ------------------------
+Ref-Call                                   6     4 ?
+        
+    Dump Name: ref-call
+ Storage Area: Info Area
+        
+       Trigger Event Trigger Procedure    Overridable? Check CRC?
+       ------------- -------------------- ------------ ----------
+       CREATE        sports/ref_call.p    no           no
+        
+        
+============================= FIELD SUMMARY =============================
+============================= Table: Ref-Call ===========================
+        
+Flags: <c>ase sensitive, <i>ndex component, <m>andatory, <v>iew component
+        
+Order Field Name                       Data Type   Flags
+----- -------------------------------- ----------- -----
+   10 Call-Num                         char        i
+   20 Cust-Num                         inte        i
+   30 Call-Date                        date
+   40 Sales-Rep                        char
+   50 Parent                           char        i
+   60 Txt                              char        i
+        
+Field Name                       Format
+-------------------------------- -----------------------------
+Call-Num                         X(6)
+Cust-Num                         >>>>9
+Call-Date                        99/99/99
+Sales-Rep                        x(4)
+Parent                           X(6)
+Txt                              X(300)
+        
+Field Name                       Initial
+-------------------------------- -----------------------------
+Call-Num
+Cust-Num                         0
+Call-Date                        ?
+Sales-Rep
+Parent
+Txt
+        
+Field Name                     Label                  Column Label
+------------------------------ ---------------------- ----------------------
+Call-Num                       ?                      ?
+Cust-Num                       ?                      ?
+Call-Date                      ?                      ?
+Sales-Rep                      ?                      ?
+Parent                         ?                      ?
+Txt                            ?                      ?
+        
+        
+============================= INDEX SUMMARY =============================
+============================= Table: Ref-Call ===========================
+        
+Flags: <p>rimary, <u>nique, <w>ord, <a>bbreviated, <i>nactive, + asc, - desc
+        
+Flags Index Name                       Cnt Field Name
+----- -------------------------------- --- ---------------------------------
+pu    Call-Num                           1 + Call-Num
+        
+u     Cust-Num                           2 + Cust-Num
+                                           + Call-Num
+        
+ua    Sibling                            2 + Parent
+                                           + Call-Num
+        
+w     Txt                                1 + Txt
+        
+** Index Name: Call-Num
+ Storage Area: Info Area
+** Index Name: Cust-Num
+ Storage Area: Info Area
+** Index Name: Sibling
+ Storage Area: Info Area
+** Index Name: Txt
+ Storage Area: Info Area
+        
+        
+============================= FIELD DETAILS =============================
+============================= Table: Ref-Call ===========================
+        
+** Field Name: Cust-Num
+      Val-Msg: Customer number must be greater than zero
+      Val-Exp: cust-num > 0
+        
+        
+        
+=========================================================================
+============================= Table: Salesrep ===========================
+        
+              Table Flags: "f" = frozen, "s" = a SQL table
+        
+        
+Table                            Table Field Index Table
+Name                             Flags Count Count Label
+-------------------------------- ----- ----- ----- ------------------------
+Salesrep                                   4     1 ?
+        
+    Dump Name: salesrep
+  Description: Sales representative information
+      Val-Exp: NOT CAN-FIND(FIRST Customer Of Salesrep)
+      Val-Msg: Cannot delete if used in one or more customer records.
+ Storage Area: Info Area
+        
+        
+============================= FIELD SUMMARY =============================
+============================= Table: Salesrep ===========================
+        
+Flags: <c>ase sensitive, <i>ndex component, <m>andatory, <v>iew component
+        
+Order Field Name                       Data Type   Flags
+----- -------------------------------- ----------- -----
+    1 Sales-Rep                        char        i
+   20 Rep-Name                         char
+   30 Region                           char
+   40 Month-Quota                      inte[12]
+        
+Field Name                       Format
+-------------------------------- -----------------------------
+Sales-Rep                        x(4)
+Rep-Name                         x(30)
+Region                           x(8)
+Month-Quota                      ->,>>>,>>9
+        
+Field Name                       Initial
+-------------------------------- -----------------------------
+Sales-Rep
+Rep-Name
+Region
+Month-Quota                      0
+        
+Field Name                     Label                  Column Label
+------------------------------ ---------------------- ----------------------
+Sales-Rep                      ?                      ?
+Rep-Name                       ?                      ?
+Region                         ?                      ?
+Month-Quota                    ?                      ?
+        
+        
+============================= INDEX SUMMARY =============================
+============================= Table: Salesrep ===========================
+        
+Flags: <p>rimary, <u>nique, <w>ord, <a>bbreviated, <i>nactive, + asc, - desc
+        
+Flags Index Name                       Cnt Field Name
+----- -------------------------------- --- ---------------------------------
+pu    Sales-Rep                          1 + Sales-Rep
+        
+** Index Name: Sales-Rep
+ Storage Area: Info Area
+        
+        
+============================= FIELD DETAILS =============================
+============================= Table: Salesrep ===========================
+        
+** Field Name: Rep-Name
+         Help: Name of Salesman
+        
+** Field Name: Region
+         Help: Sales Region covered by this salesman
+        
+        
+        
+=========================================================================
+============================= Table: State ==============================
+        
+              Table Flags: "f" = frozen, "s" = a SQL table
+        
+        
+Table                            Table Field Index Table
+Name                             Flags Count Count Label
+-------------------------------- ----- ----- ----- ------------------------
+State                                      3     1 ?
+        
+    Dump Name: state
+  Description: Table of state abbreviation with sales regions
+      Val-Exp: NOT (CAN-FIND(FIRST customer OF state))
+      Val-Msg: This state record is used by at least one Customer record.
+ Storage Area: Info Area
+        
+        
+============================= FIELD SUMMARY =============================
+============================= Table: State ==============================
+        
+Flags: <c>ase sensitive, <i>ndex component, <m>andatory, <v>iew component
+        
+Order Field Name                       Data Type   Flags
+----- -------------------------------- ----------- -----
+   10 State                            char        i
+   20 State-Name                       char
+   30 Region                           char
+        
+Field Name                       Format
+-------------------------------- -----------------------------
+State                            !!
+State-Name                       x(15)
+Region                           x(8)
+        
+Field Name                       Initial
+-------------------------------- -----------------------------
+State
+State-Name
+Region
+        
+Field Name                     Label                  Column Label
+------------------------------ ---------------------- ----------------------
+State                          ?                      ?
+State-Name                     ?                      ?
+Region                         ?                      ?
+        
+        
+============================= INDEX SUMMARY =============================
+============================= Table: State ==============================
+        
+Flags: <p>rimary, <u>nique, <w>ord, <a>bbreviated, <i>nactive, + asc, - desc
+        
+Flags Index Name                       Cnt Field Name
+----- -------------------------------- --- ---------------------------------
+pu    State                              1 + State
+        
+** Index Name: State
+ Storage Area: Info Area
+        
+        
+============================= FIELD DETAILS =============================
+============================= Table: State ==============================
+        
+** Field Name: State
+         Help: State abbreviation
+        
+** Field Name: State-Name
+         Help: Full state name
+        
+** Field Name: Region
+         Help: Sales region for state
+        
+        
+        
+============================= SEQUENCES =================================
+        
+                                    Initial                Max/Min
+Sequence Name                         Value  Increment       Value Cycle?
+-------------------------------- ---------- ---------- ----------- ------
+Next-Cust-Num                          1000          5           ? no
+Next-Inv-Num                           1000          1           ? no
+Next-Item-Num                           100         10           ? no
+Next-Ord-Num                           1000          5           ? no
+Next-Ref-Num                              1          1           ? no
