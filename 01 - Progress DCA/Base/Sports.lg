@@ -18,3 +18,43 @@
 [2015/07/09@14:19:55.362-0300] P-7664       T-5556  I ABL      : (451)   Sessão Single-user iniciada por Sanderlei em CON:. 
 [2015/07/09@14:19:55.362-0300] P-7664       T-5556  I ABL      : (15321) Inicialização do log Before Image no bloco 0  offset 3642. 
 [2015/07/09@14:19:55.365-0300] P-7664       T-5556  I ABL      : (12699) Banco de dados Sports Opções:  
+
+                Fri Jul 10 17:41:39 2015
+[2015/07/10@17:41:39.979-0300] P-7664       T-5556  I ABL      : (15109) No fechamento do banco de dados o número de transações ao vivo é 0. 
+[2015/07/10@17:41:39.979-0300] P-7664       T-5556  I ABL      : (15743) Before Image Log Completion at Block 3 Offset 3997. 
+[2015/07/10@17:41:40.001-0300] P-7664       T-5556  I ABL      : (334)   Fim de sessão Single-user. 
+
+                Fri Jul 10 17:49:28 2015
+[2015/07/10@17:49:28.142-0300] P-6224       T-6872  I ABL      : (451)   Sessão Single-user iniciada por Sanderlei em CON:. 
+[2015/07/10@17:49:28.142-0300] P-6224       T-6872  I ABL      : (15321) Inicialização do log Before Image no bloco 3  offset 3997. 
+[2015/07/10@17:49:28.157-0300] P-6224       T-6872  I ABL      : (12699) Banco de dados Sports Opções:  
+
+                Sun Jul 12 03:42:19 2015
+[2015/07/12@03:42:19.075-0300] P-6224       T-6872  I ABL      : (15109) No fechamento do banco de dados o número de transações ao vivo é 0. 
+[2015/07/12@03:42:19.075-0300] P-6224       T-6872  I ABL      : (15743) Before Image Log Completion at Block 4 Offset 1062. 
+[2015/07/12@03:42:19.340-0300] P-6224       T-6872  I ABL      : (334)   Fim de sessão Single-user. 
+
+                Mon Jul 13 08:43:54 2015
+[2015/07/13@08:43:54.291-0300] P-8500       T-9924  I ABL      : (451)   Sessão Single-user iniciada por Sanderlei em CON:. 
+[2015/07/13@08:43:54.291-0300] P-8500       T-9924  I ABL      : (15321) Inicialização do log Before Image no bloco 4  offset 1062. 
+[2015/07/13@08:43:54.510-0300] P-8500       T-9924  I ABL      : (12699) Banco de dados Sports Opções:  
+[2015/07/13@20:12:03.140-0300] P-8500       T-9924  I ABL      : (15109) No fechamento do banco de dados o número de transações ao vivo é 0. 
+[2015/07/13@20:12:03.140-0300] P-8500       T-9924  I ABL      : (15743) Before Image Log Completion at Block 6 Offset 1570. 
+[2015/07/13@20:12:03.187-0300] P-8500       T-9924  I ABL      : (334)   Fim de sessão Single-user. 
+
+                Tue Jul 14 13:39:23 2015
+[2015/07/14@13:39:23.991-0300] P-9800       T-6664  I ABL      : (451)   Sessão Single-user iniciada por Sanderlei em CON:. 
+[2015/07/14@13:39:24.022-0300] P-9800       T-6664  I ABL      : (15321) Inicialização do log Before Image no bloco 6  offset 1570. 
+[2015/07/14@13:39:24.225-0300] P-9800       T-6664  I ABL      : (12699) Banco de dados Sports Opções:  
+
+                Tue Jul 14 22:56:19 2015
+[2015/07/14@22:56:19.290-0300] P-8336       T-8104  I ABL      : (451)   Sessão Single-user iniciada por Sanderlei em CON:. 
+[2015/07/14@22:56:19.336-0300] P-8336       T-8104  I ABL      : (5326)  Iniciar Fase de Refazer Físico em 0 . 
+[2015/07/14@22:56:19.571-0300] P-8336       T-8104  I ABL      : (7161)  Fase de Refazer Físico Concluída no blk 6 off 3240 upd 11. 
+[2015/07/14@22:56:19.571-0300] P-8336       T-8104  I ABL      : (13547) No final do refazer Físico, o tamanho da tabela de transação é 1. 
+[2015/07/14@22:56:19.633-0300] P-8336       T-8104  I ABL      : (12699) Banco de dados Sports Opções:  
+
+                Wed Jul 15 01:14:29 2015
+[2015/07/15@01:14:29.340-0300] P-8336       T-8104  I ABL      : (15109) No fechamento do banco de dados o número de transações ao vivo é 0. 
+[2015/07/15@01:14:29.340-0300] P-8336       T-8104  I ABL      : (15743) Before Image Log Completion at Block 6 Offset 3300. 
+[2015/07/15@01:14:29.987-0300] P-8336       T-8104  I ABL      : (334)   Fim de sessão Single-user. 
