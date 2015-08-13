@@ -1,3 +1,3 @@
 REPEAT:
-    INSERT customer WITH 1 COLUMN.
+    INSERT customer WITH 1 COLUMN. 
 END.
